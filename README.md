@@ -45,12 +45,14 @@ $ ffplay -activation_bytes CAFED00D sample.aax
 ## Quick Setup
 
 Python 2 (or Python >= 3.6) is required along with Selenium, Requests,
-ChromeDriver, and Google Chrome.
+ChromeDriver, Webdriver Manager, and Google Chrome.
 
 ```
 pip install --user requests  # use "easy_install" if pip is missing
 
 pip install --user selenium
+
+pip install --user webdriver-manager
 ```
 
 Download and extract the correct ChromeDriver zip file [from
