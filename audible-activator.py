@@ -11,6 +11,7 @@ import requests
 from getpass import getpass
 from selenium import webdriver
 from optparse import OptionParser
+from webdriver_manager.chrome import ChromeDriverManager
 
 PY3 = sys.version_info[0] == 3
 
@@ -65,18 +66,7 @@ def fetch_activation_bytes(username, password, options):
     if options.firefox:
         driver = webdriver.Firefox()
     else:
-        if sys.platform == 'win32':
-            chromedriver_path = "chromedriver.exe"
-        elif os.path.isfile("/usr/lib/chromium-browser/chromedriver"):  # Ubuntu package chromedriver path
-            chromedriver_path = "/usr/lib/chromium-browser/chromedriver"
-        elif os.path.isfile("/usr/local/bin/chromedriver"):  # macOS + Homebrew
-            chromedriver_path = "/usr/local/bin/chromedriver"
-        else:
-            chromedriver_path = "./chromedriver"
-
-
-        driver = webdriver.Chrome(chrome_options=opts,
-                                  executable_path=chromedriver_path)
+        driver = webdriver.Chrome(ChromeDriverManager().install())
 
     query_string = urlencode(payload)
     url = login_url + query_string
