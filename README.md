@@ -3,8 +3,7 @@
 A script to retrieve your activation data (activation_bytes) from Audible
 servers.
 
-Last tested on macOS 10.14.1 + Google Chrome 70 + ChromeDriver 2.44 in
-November, 2018.
+Last tested on Fedora 32 in June, 2020.
 
 ## Donations
 
@@ -27,6 +26,7 @@ Options:
   -p PLAYER_ID          Player ID in hex (for debugging, not for end users)
   --username=USERNAME   Audible username, use along with the --password option
   --password=PASSWORD   Audible password
+  -o                    use this option to automatically save auth code to `.authcode`
 ...
 
 $ ./audible-activator.py
@@ -54,10 +54,6 @@ pip install --user selenium
 
 pip install --user webdriver-manager
 ```
-
-Download and extract the correct ChromeDriver zip file [from
-here](https://sites.google.com/a/chromium.org/chromedriver/downloads) to this
-folder.
 
 Download Google Chrome from https://www.google.com/chrome/ and install it on
 your computer.

@@ -114,6 +114,11 @@ def fetch_activation_bytes(username, password, options):
     activation_bytes, _ = common.extract_activation_bytes(response.content)
     print("activation_bytes: " + activation_bytes)
 
+    if options.output:
+        with open('.authcode', 'w+') as f:
+            f.write(activation_bytes)
+            print("activation_bytes saved to .authcode")
+
     # Step 5 (de-register again to stop filling activation slots)
     s.get(durl, headers=headers)
 
@@ -154,6 +159,11 @@ if __name__ == "__main__":
                       dest="password",
                       default=False,
                       help="Audible password")
+    parser.add_option("-o",
+                      action="store_true",
+                      dest="output",
+                      default=False,
+                      help="use this option to save the auth code output to .authcode")
     (options, args) = parser.parse_args()
 
     if options.username and options.password:
